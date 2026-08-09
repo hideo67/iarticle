@@ -1,0 +1,9 @@
+[package]
+name = "iarticle"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Hideo Takahashi"]
+license = "MIT"
+description = "i18n-aware article and report templates for Typst"
+repository = "https://github.com/hideo67/iarticle"
+keywords = ["i18n", "l10n", "article", "report", "japanese"]
