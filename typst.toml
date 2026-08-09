@@ -7,3 +7,8 @@ license = "MIT"
 description = "i18n-aware article and report templates for Typst"
 repository = "https://github.com/hideo67/iarticle"
 keywords = ["i18n", "l10n", "article", "report", "japanese"]
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"

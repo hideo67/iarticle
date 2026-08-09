@@ -103,3 +103,10 @@ replacing them outright:
 
 Run `install_for_test.sh` once to register this checkout as
 `@preview/iarticle:0.1.0`, then compile anything under `samples/`.
+
+Scaffold a new project from `template/` the same way an end user would:
+
+```sh
+typst init @preview/iarticle:0.1.0 my-project
+```
+
