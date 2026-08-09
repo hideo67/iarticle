@@ -60,13 +60,12 @@ For a shorter, section-only document, use `iarticle` instead:
 ...
 ```
 
-See [`samples/`](https://github.com/hideo67/iarticle/tree/0.1.0/samples)
-for fuller examples, including figures, tables, citations, and
-`appendix(..)` - `report-{en,ja}.typ` for `ireport`, `article-{en,ja}.typ`
-for `iarticle`. (`samples/` is excluded from the published package
-bundle - see `exclude` in `typst.toml` - to keep it small; browse it on
-GitHub or clone the repository rather than expecting it in a local
-package install.)
+See [`samples/`](samples/) for fuller examples, including figures,
+tables, citations, and `appendix(..)` - `report-{en,ja}.typ` for
+`ireport`, `article-{en,ja}.typ` for `iarticle`. (`samples/` is
+excluded from the published package bundle - see `exclude` in
+`typst.toml` - to keep it small, so it won't be present in a local
+`@preview` install; it's still browsable here and in the repository.)
 
 ## Fonts
 
