@@ -15,34 +15,24 @@
 //     captions, a translated table of contents, an abstract block, a
 //     translated bibliography title, and an `appendix()` helper.
 //
-// Supported locales: en, ja, zh-hans (Simplified Chinese), zh-hant
-// (Traditional Chinese), ko. The zh split matters because Typst's
-// `text.lang` only ever carries the bare "zh" - it has no separate
-// script field - so `region` is the only signal that tells Simplified
-// from Traditional apart; see `_locale-for`. The l10n/*.typ content for
-// zh-hans/zh-hant/ko is a best effort, not a native/fluent review -
-// flagged again at the top of each of those three files.
+// Supported locales: en, ja.
 
 // A locale is the key used for l10n/<locale>.typ and for the font
-// tables below; it's derived from (lang, region) rather than being
-// lang directly, because "zh" alone is ambiguous between Simplified
-// and Traditional script. Everything else maps straight through.
-// Region-less/other-region "zh" defaults to Simplified (larger
-// installed base); Traditional needs an explicit TW/HK/MO region.
-#let _locale-for(lang, region) = {
-  if lang == "zh" {
-    if region in ("TW", "HK", "MO") { "zh-hant" } else { "zh-hans" }
-  } else {
-    lang
-  }
-}
+// tables below. It's currently just `lang` passed through unchanged,
+// since neither supported locale needs `region` to disambiguate it.
+// `region` is still threaded through the call site (rather than
+// dropped) so a future script-ambiguous locale - e.g. Chinese, where
+// `text.lang` only ever carries the bare "zh" and `region` is the only
+// signal that tells Simplified from Traditional apart - only needs to
+// extend this one function.
+#let _locale-for(lang, region) = lang
 
 // locales with a l10n/<locale>.typ table. To add one: write
 // l10n/xx.typ with the same keys as l10n/en.typ and add "xx" here -
 // nothing else needs to change, see `_strings-for` below. (If it's a
-// new script variant of an existing lang, like zh was, extend
-// `_locale-for` too.)
-#let _supported-locales = ("en", "ja", "zh-hans", "zh-hant", "ko")
+// new script variant of an existing lang, like a future zh would be,
+// extend `_locale-for` too.)
+#let _supported-locales = ("en", "ja")
 
 // Locale used as a fallback, both when the resolved locale isn't in
 // `_supported-locales` and when a table is missing a specific key.
@@ -120,20 +110,19 @@
 // is what keeps mixed-script content correct (an English proper noun
 // in a Japanese sentence, code in a Japanese doc, etc.).
 //
-// The CJK addition is still keyed per locale (see `_font-stack`
-// below), for two reasons:
-//  - Typst warns once per `set text(font: ...)` call for every named
-//    family that isn't installed, whether or not it was ever actually
-//    needed - so an English document listing Japanese font names it
-//    will never use would warn about them for no reason. Only
-//    appending a CJK addition for locales whose script needs it keeps
-//    a `lang: "en"` document (the common case) silent by default.
-//  - Japanese/Simplified/Traditional/Korean don't all want the same
-//    CJK font: many CJK characters share a Unicode codepoint across
-//    scripts ("Han unification") but are conventionally drawn with
-//    different regional glyph shapes, so e.g. reusing a Japanese font
-//    for Chinese text can render subtly wrong-shaped strokes to a
-//    native reader without erroring or showing empty boxes.
+// The CJK addition is keyed per locale (see `_font-stack` below)
+// rather than always appended, because Typst warns once per `set
+// text(font: ...)` call for every named family that isn't installed,
+// whether or not it was ever actually needed - so an English document
+// listing Japanese font names it will never use would warn about them
+// for no reason. Only appending a CJK addition for locales whose
+// script needs it keeps a `lang: "en"` document (the common case)
+// silent by default. Keying by locale rather than hardcoding "ja" also
+// leaves room to add another CJK locale later without touching
+// `_font-stack` itself - different CJK scripts conventionally want
+// different fonts even where they share a Unicode codepoint ("Han
+// unification"), so a future addition would get its own entry rather
+// than reusing this one.
 //
 // "New Computer Modern" ships embedded in Typst itself, so it's always
 // available as the Latin anchor; "Liberation Sans" is metric-compatible
@@ -158,15 +147,9 @@
 #let default-latin-sans-font = ("Liberation Sans",)
 #let default-cjk-serif-font = (
   ja: ("Noto Serif JP", "Noto Serif CJK JP"),
-  zh-hans: ("Noto Serif SC", "Noto Serif CJK SC"),
-  zh-hant: ("Noto Serif TC", "Noto Serif CJK TC"),
-  ko: ("Noto Serif KR", "Noto Serif CJK KR"),
 )
 #let default-cjk-sans-font = (
   ja: ("Noto Sans JP", "Noto Sans CJK JP"),
-  zh-hans: ("Noto Sans SC", "Noto Sans CJK SC"),
-  zh-hant: ("Noto Sans TC", "Noto Sans CJK TC"),
-  ko: ("Noto Sans KR", "Noto Sans CJK KR"),
 )
 
 #let _font-stack(locale, latin, cjk-by-locale) = {
@@ -197,8 +180,7 @@
   // `auto` means "pick the default stack for this locale"; an explicit
   // serif-font/sans-font argument is used exactly as given, with no
   // locale-based CJK fallback appended - if you override it for a
-  // Japanese/Chinese/Korean document, include a CJK font in the
-  // override yourself.
+  // Japanese document, include a CJK font in the override yourself.
   let locale = _locale-for(lang, region)
   let serif-font = if serif-font == auto {
     _font-stack(locale, default-latin-serif-font, default-cjk-serif-font)

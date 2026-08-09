@@ -37,28 +37,21 @@ by default. Import it the same way, just with `ireport` in place of
 
 Chapter/section/appendix labels, figure/table captions, and the
 abstract/contents/references headings are all localized based on
-`lang`/`region`:
+`lang`:
 
 #figure(
   table(
-    columns: 4,
-    [*lang*], [*region*], [*locale*], [*l10n file*],
-    [en], [--], [en], [`l10n/en.typ`],
-    [ja], [--], [ja], [`l10n/ja.typ`],
-    [zh], [(none), other], [zh-hans], [`l10n/zh-hans.typ`],
-    [zh], [TW, HK, MO], [zh-hant], [`l10n/zh-hant.typ`],
-    [ko], [--], [ko], [`l10n/ko.typ`],
+    columns: 3,
+    [*lang*], [*locale*], [*l10n file*],
+    [en], [en], [`l10n/en.typ`],
+    [ja], [ja], [`l10n/ja.typ`],
   ),
   caption: [
-    Chinese needs `region` because Typst's `text.lang` only ever
-    carries the bare "zh" - region is what tells Simplified from
-    Traditional apart.
+    `region` is also accepted and forwarded to Typst's own `text`
+    state, but doesn't currently pick between locales - neither `en`
+    nor `ja` is script-ambiguous the way e.g. Chinese would be.
   ],
 )
-
-The zh-hans/zh-hant/ko translations are a best effort, not a
-native/fluent review - see the note at the top of each `l10n/*.typ`
-file.
 
 #figure(
   rect(width: 4cm, height: 2.5cm, stroke: 0.5pt),
@@ -72,11 +65,10 @@ file.
 = Fonts
 
 `serif-font`/`sans-font` default to `auto`: a Latin base, plus a
-locale-specific CJK addition only for locales that need one - so an
-English document doesn't warn about missing Japanese/Chinese/Korean
-fonts, but a Japanese/Chinese/Korean one does if none are found.
-Override either at the call site if your system has different fonts
-installed.
+Japanese CJK addition for `lang: "ja"` only - so an English document
+doesn't warn about missing Japanese fonts, but a Japanese one does if
+none are found. Override either at the call site if your system has
+different fonts installed.
 
 #appendix[
   = Learn more

@@ -12,27 +12,20 @@ This package provides two templates, mirroring the LaTeX `article` vs.
 
 Both localize their own generated text (chapter/section/appendix
 labels, figure/table captions, "Contents", "References", "Abstract")
-based on `lang`/`region` - see `l10n/`. Supported locales:
+based on `lang` - see `l10n/`. Supported locales:
 
-| `lang` | `region`         | locale    | l10n file          |
-| ------ | ---------------- | --------- | ------------------- |
-| `en`   | -                | en        | `l10n/en.typ`        |
-| `ja`   | -                | ja        | `l10n/ja.typ`        |
-| `zh`   | (none), other    | zh-hans   | `l10n/zh-hans.typ`   |
-| `zh`   | `TW`, `HK`, `MO`  | zh-hant   | `l10n/zh-hant.typ`   |
-| `ko`   | -                | ko        | `l10n/ko.typ`        |
+| `lang` | locale | l10n file      |
+| ------ | ------ | -------------- |
+| `en`   | en     | `l10n/en.typ`  |
+| `ja`   | ja     | `l10n/ja.typ`  |
 
-Chinese needs `region` because Typst's `text.lang` only ever carries
-the bare `"zh"` - it has no separate script field - so region is the
-only signal available to tell Simplified from Traditional apart.
-
-**The zh-hans/zh-hant/ko translations are a best effort, not a
-native/fluent review** - neither this template's author nor the person
-who wrote them reads these languages. They're standard,
-low-ambiguity technical-document terms, not guesses, but get them
-checked by a native/fluent speaker before relying on them for
-anything real. Corrections are isolated one-line fixes in the
-relevant `l10n/*.typ` file.
+`region` is also accepted and forwarded to Typst's own `text` state
+(it affects Typst's built-in, language-level behavior independent of
+this package's string tables); it doesn't currently pick between
+locales, since neither `en` nor `ja` is script-ambiguous the way e.g.
+Chinese would be. A future locale that needs region to disambiguate
+(Simplified vs. Traditional Chinese, say) can add that without
+changing this API - see `_locale-for` in `lib.typ`.
 
 ## To use:
 
@@ -69,23 +62,20 @@ For a shorter, section-only document, use `iarticle` instead:
 
 See `samples/` for fuller examples, including figures, tables,
 citations, and `appendix(..)` - `report-{en,ja}.typ` for `ireport`,
-`article-{en,ja,zh-hans,zh-hant,ko}.typ` for `iarticle`.
+`article-{en,ja}.typ` for `iarticle`.
 
 ## Fonts
 
 `iarticle`/`ireport` take `serif-font`/`sans-font` parameters (font
 fallback lists, resolved per character, so mixed Latin/CJK text keeps
 working). Left as `auto` (the default), the stack used depends on the
-resolved locale (the same `lang`/`region` resolution as the string
-table above): a Latin-only base for locales that don't need more, with
-a locale-specific CJK addition for ja/zh-hans/zh-hant/ko - a different
-one per script, since e.g. reusing a Japanese font for Chinese text can
-render subtly wrong-shaped strokes ("Han unification") even though
-nothing errors. This is also why an English document doesn't warn
-about missing CJK fonts, but a Japanese/Chinese/Korean one does if none
-are found. Override `serif-font`/`sans-font` at the call site rather
-than editing this template; to extend the shipped defaults instead of
-replacing them outright:
+resolved locale (the same `lang` resolution as the string table above):
+a Latin-only base for `en`, plus a Japanese CJK addition for `ja`. This
+is also why an English document doesn't warn about missing CJK fonts,
+but a Japanese one does if none are found. Override
+`serif-font`/`sans-font` at the call site rather than editing this
+template; to extend the shipped defaults instead of replacing them
+outright:
 
 ```typst
 #import "@preview/iarticle:0.1.0": iarticle
