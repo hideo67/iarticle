@@ -1,4 +1,4 @@
-# iarticle - i18n-aware article/report templates for typst
+# iarticle - i18n-aware article/report templates
 
 This package provides two templates, mirroring the LaTeX `article` vs.
 `report` distinction:
