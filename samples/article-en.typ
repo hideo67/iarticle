@@ -4,8 +4,8 @@
 // See samples/report-en.typ for the chapter-based sibling.
 //
 // Before this will compile, register the local checkout as
-// @preview/iarticle:0.1.0 by running ../install_for_test.sh once.
-#import "@preview/iarticle:0.1.0": iarticle, appendix
+// @preview/iarticle:0.1.1 by running ../install_for_test.sh once.
+#import "@preview/iarticle:0.1.1": iarticle, appendix
 
 #show: iarticle.with(
   lang: "en",

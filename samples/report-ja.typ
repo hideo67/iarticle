@@ -3,9 +3,9 @@
 // 章立てのない (iarticle) 側は samples/article-ja.typ を参照。
 //
 // コンパイルする前に、ローカルのチェックアウトを
-// @preview/iarticle:0.1.0 として登録するため、一度だけ
+// @preview/iarticle:0.1.1 として登録するため、一度だけ
 // ../install_for_test.sh を実行してください。
-#import "@preview/iarticle:0.1.0": ireport, appendix
+#import "@preview/iarticle:0.1.1": ireport, appendix
 
 #show: ireport.with(
   lang: "ja",

@@ -135,8 +135,8 @@
 // tables are exported (not `_`-prefixed) so a per-machine override can
 // build on them instead of retyping a stack from scratch, e.g.:
 //
-//   #import "@preview/iarticle:0.1.0": iarticle
-//   #import "@preview/iarticle:0.1.0": default-latin-serif-font, default-cjk-serif-font
+//   #import "@preview/iarticle:0.1.1": iarticle
+//   #import "@preview/iarticle:0.1.1": default-latin-serif-font, default-cjk-serif-font
 //   #show: iarticle.with(
 //     lang: "ja",
 //     serif-font: default-latin-serif-font
@@ -225,7 +225,14 @@
     block(above: 1.2em, below: 0.6em)[#_numbered-label(it, "section") #it.body]
   }
 
+  // Tables conventionally have their caption above the content, figures
+  // below - the reader decides whether to read a table by its caption
+  // first, but takes in a figure visually before reading its caption.
+  // `figure()`'s own default puts every caption below regardless of
+  // `kind`, so the table case needs an explicit override; the image
+  // case is left alone since that's already what we want.
   show figure.where(kind: table): set figure(supplement: t("table"))
+  show figure.where(kind: table): set figure.caption(position: top)
   show figure.where(kind: image): set figure(supplement: t("figure"))
 
   set bibliography(title: t("references"))
@@ -258,7 +265,7 @@
 // break between sections, no auto-outline by default - for papers and
 // other short documents. Used as:
 //
-//   #import "@preview/iarticle:0.1.0": iarticle
+//   #import "@preview/iarticle:0.1.1": iarticle
 //   #show: iarticle.with(lang: "ja", title: "...")
 //
 //   = Section title
@@ -269,7 +276,7 @@
 // page), sections nest under it, auto-outline by default - for longer
 // documents. Used as:
 //
-//   #import "@preview/iarticle:0.1.0": ireport
+//   #import "@preview/iarticle:0.1.1": ireport
 //   #show: ireport.with(lang: "ja", title: "...")
 //
 //   = Chapter title

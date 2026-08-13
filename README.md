@@ -30,7 +30,7 @@ changing this API - see `_locale-for` in `lib.typ`.
 ## To use:
 
 ```typst
-#import "@preview/iarticle:0.1.0": ireport
+#import "@preview/iarticle:0.1.1": ireport
 
 #show: ireport.with(
     lang: "ja",
@@ -48,7 +48,7 @@ changing this API - see `_locale-for` in `lib.typ`.
 For a shorter, section-only document, use `iarticle` instead:
 
 ```typst
-#import "@preview/iarticle:0.1.0": iarticle
+#import "@preview/iarticle:0.1.1": iarticle
 
 #show: iarticle.with(
     lang: "en",
@@ -81,8 +81,8 @@ template; to extend the shipped defaults instead of replacing them
 outright:
 
 ```typst
-#import "@preview/iarticle:0.1.0": iarticle
-#import "@preview/iarticle:0.1.0": default-latin-serif-font, default-cjk-serif-font
+#import "@preview/iarticle:0.1.1": iarticle
+#import "@preview/iarticle:0.1.1": default-latin-serif-font, default-cjk-serif-font
 
 #show: iarticle.with(
   lang: "ja",
@@ -95,11 +95,11 @@ outright:
 ## Local development
 
 Run `install_for_test.sh` once to register this checkout as
-`@preview/iarticle:0.1.0`, then compile anything under `samples/`.
+`@preview/iarticle:0.1.1`, then compile anything under `samples/`.
 
 Scaffold a new project from `template/` the same way an end user would:
 
 ```sh
-typst init @preview/iarticle:0.1.0 my-project
+typst init @preview/iarticle:0.1.1 my-project
 ```
 
