@@ -234,6 +234,10 @@
   show figure.where(kind: table): set figure(supplement: t("table"))
   show figure.where(kind: table): set figure.caption(position: top)
   show figure.where(kind: image): set figure(supplement: t("figure"))
+  // Extra breathing room around each figure, and between its caption
+  // and body - the defaults read a bit cramped.
+  show figure: set block(above: 1.8em, below: 1.8em)
+  show figure: set figure(gap: 1.2em)
 
   set bibliography(title: t("references"))
 
