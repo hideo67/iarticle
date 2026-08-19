@@ -4,8 +4,8 @@
 // no-chapters sibling template (iarticle).
 //
 // Before this will compile, register the local checkout as
-// @preview/iarticle:0.1.1 by running ../install_for_test.sh once.
-#import "@preview/iarticle:0.1.1": ireport, appendix
+// @preview/iarticle:0.1.2 by running ../install_for_test.sh once.
+#import "@preview/iarticle:0.1.2": ireport, appendix
 
 #show: ireport.with(
   lang: "en",

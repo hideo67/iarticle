@@ -4,9 +4,9 @@
 // samples/report-ja.typ を参照。
 //
 // コンパイルする前に、ローカルのチェックアウトを
-// @preview/iarticle:0.1.1 として登録するため、一度だけ
+// @preview/iarticle:0.1.2 として登録するため、一度だけ
 // ../install_for_test.sh を実行してください。
-#import "@preview/iarticle:0.1.1": iarticle, appendix
+#import "@preview/iarticle:0.1.2": iarticle, appendix
 
 #show: iarticle.with(
   lang: "ja",

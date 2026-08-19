@@ -4,7 +4,7 @@
 // README.md) rather than bare TODO placeholders - it doubles as a
 // working example of headings, a table, a figure, a citation, and
 // appendix(..) before you replace it with your own content.
-#import "@preview/iarticle:0.1.1": iarticle, appendix
+#import "@preview/iarticle:0.1.2": iarticle, appendix
 
 #show: iarticle.with(
   lang: "en",
@@ -29,7 +29,7 @@ by default. Import it the same way, just with `ireport` in place of
 `iarticle`:
 
 ```typst
-#import "@preview/iarticle:0.1.1": ireport
+#import "@preview/iarticle:0.1.2": ireport
 #show: ireport.with(lang: "ja", title: "...")
 ```
 

@@ -8,8 +8,8 @@
 // howto-support-i18n-ja.typ for the Japanese version of this guide.
 //
 // Before this will compile, register the local checkout as
-// @preview/iarticle:0.1.1 by running ../install_for_test.sh once.
-#import "@preview/iarticle:0.1.1": iarticle, appendix
+// @preview/iarticle:0.1.2 by running ../install_for_test.sh once.
+#import "@preview/iarticle:0.1.2": iarticle, appendix
 
 #show: iarticle.with(
   lang: "en",
@@ -18,7 +18,7 @@
   abstract: [
     This document explains how to give a Typst template `lang`-aware heading
     labels and captions, using the implementation of iarticle
-    (`@preview/iarticle:0.1.1`) as the worked example. The mechanism is just
+    (`@preview/iarticle:0.1.2`) as the worked example. The mechanism is just
     three pieces --- a string table, locale resolution, and a lookup
     function --- and the template itself only needs to call them from its
     `set`/`show` rules.

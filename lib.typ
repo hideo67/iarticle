@@ -135,8 +135,8 @@
 // tables are exported (not `_`-prefixed) so a per-machine override can
 // build on them instead of retyping a stack from scratch, e.g.:
 //
-//   #import "@preview/iarticle:0.1.1": iarticle
-//   #import "@preview/iarticle:0.1.1": default-latin-serif-font, default-cjk-serif-font
+//   #import "@preview/iarticle:0.1.2": iarticle
+//   #import "@preview/iarticle:0.1.2": default-latin-serif-font, default-cjk-serif-font
 //   #show: iarticle.with(
 //     lang: "ja",
 //     serif-font: default-latin-serif-font
@@ -269,7 +269,7 @@
 // break between sections, no auto-outline by default - for papers and
 // other short documents. Used as:
 //
-//   #import "@preview/iarticle:0.1.1": iarticle
+//   #import "@preview/iarticle:0.1.2": iarticle
 //   #show: iarticle.with(lang: "ja", title: "...")
 //
 //   = Section title
@@ -280,7 +280,7 @@
 // page), sections nest under it, auto-outline by default - for longer
 // documents. Used as:
 //
-//   #import "@preview/iarticle:0.1.1": ireport
+//   #import "@preview/iarticle:0.1.2": ireport
 //   #show: ireport.with(lang: "ja", title: "...")
 //
 //   = Chapter title

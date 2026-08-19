@@ -6,16 +6,16 @@
 // 説明している仕組みそのものの実例にもなっています。
 //
 // コンパイルする前に、ローカルのチェックアウトを
-// @preview/iarticle:0.1.1 として登録するため、一度だけ
+// @preview/iarticle:0.1.2 として登録するため、一度だけ
 // ../install_for_test.sh を実行してください。
-#import "@preview/iarticle:0.1.1": iarticle, appendix
+#import "@preview/iarticle:0.1.2": iarticle, appendix
 
 #show: iarticle.with(
   lang: "ja",
   title: [i18n/l10n 対応テンプレートの作り方 --- iarticle を例に],
   authors: ("Hideo Takahashi",),
   abstract: [
-    Typst テンプレートに `lang` に応じた見出しラベルやキャプションの翻訳を組み込む方法を、iarticle (`@preview/iarticle:0.1.1`) の実装を例に説明します。
+    Typst テンプレートに `lang` に応じた見出しラベルやキャプションの翻訳を組み込む方法を、iarticle (`@preview/iarticle:0.1.2`) の実装を例に説明します。
     仕組みは「文字列テーブル」「ロケール解決」「ルックアップ関数」の3部品だけで、テンプレート本体はそれらを `set`/`show` ルールから呼び出すだけで済みます。
   ],
 )
